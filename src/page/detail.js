@@ -7,7 +7,7 @@ export default function Detail() {
 	let [detailItem, setDetailItem] = useState(null);
 
 	const getDetailData = async () => {
-		let url = `http://localhost:3001/jobs/${id}`;
+		let url = `https://my-json-server.typicode.com/hugoworldwide/itviec/jobs/${id}`;
 		let data = await fetch(url);
 		let result = await data.json();
 		setDetailItem(result);

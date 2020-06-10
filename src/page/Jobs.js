@@ -18,7 +18,7 @@ import { useHistory } from "react-router-dom";
 export default function Jobs() {
 	let history = useHistory();
 	const getData = async () => {
-		let url = `http://localhost:3001/jobs`;
+		let url = `https://my-json-server.typicode.com/hugoworldwide/itviec/jobs`;
 		let data = await fetch(url);
 		let result = await data.json();
 		setJobs(result);
