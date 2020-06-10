@@ -21,28 +21,30 @@ export default function Detail() {
 
 	return (
 		<div>
-			{detailItem === null ? (
-				<div>Loading</div>
-			) : (
-				<>
-					<h1>{detailItem.title}</h1>
-					<p>${detailItem.salary}</p>
-					<p>
-						${detailItem.city} City, District {detailItem.district}{" "}
-					</p>
+			<div>
+				{detailItem === null ? (
+					<div>Loading</div>
+				) : (
+					<>
+						<h1>{detailItem.title}</h1>
+						<p>${detailItem.salary}</p>
+						<p>
+							${detailItem.city} City, District {detailItem.district}{" "}
+						</p>
 
-					<h2>Benefit</h2>
-					<ul>
-						{detailItem.benefits.map((item) => (
-							<li>{item}</li>
-						))}
-					</ul>
+						<h2>Benefit</h2>
+						<ul>
+							{detailItem.benefits.map((item) => (
+								<li>{item}</li>
+							))}
+						</ul>
 
-					<h2>Description</h2>
-					<p>{detailItem.description}</p>
-					<button>Apply Now</button>
-				</>
-			)}
+						<h2>Description</h2>
+						<p>{detailItem.description}</p>
+						<button>Apply Now</button>
+					</>
+				)}
+			</div>
 		</div>
 	);
 }

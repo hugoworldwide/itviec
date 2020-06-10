@@ -1,15 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
-export default function page() {
+export default function Page() {
+	let history = useHistory();
+	let dispatch = useDispatch();
+	let [email, setEmail] = useState(null);
+	let [password, setPassword] = useState(null);
+
+	function login(e) {
+		e.preventDefault();
+		let user = { email: email, password: password };
+		dispatch({ type: "LOGIN", payload: user });
+		history.push("/jobs");
+	}
+
+	function handleInputChange(event) {
+		setEmail(event.target.value);
+	}
+
+	function handleInputPassword(event) {
+		setPassword(event.target.value);
+	}
+
 	return (
 		<>
 			<div className="limiter">
 				<div className="container-login100">
-					<div className="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30">
-						<form className="login100-form validate-form">
-							<span className="login100-form-title p-b-55">Login</span>
+					<div className="wrap-login100">
+						<form
+							className="login100-form validate-form"
+							onSubmit={(e) => login(e)}
+						>
+							<span className="login100-form-title">Member Login</span>
 							<div
-								className="wrap-input100 validate-input m-b-16"
+								className="wrap-input100 validate-input"
 								data-validate="Valid email is required: ex@abc.xyz"
 							>
 								<input
@@ -17,14 +42,15 @@ export default function page() {
 									type="text"
 									name="email"
 									placeholder="Email"
+									onChange={(e) => handleInputChange(e)}
 								/>
 								<span className="focus-input100" />
 								<span className="symbol-input100">
-									<span className="lnr lnr-envelope" />
+									<i className="fa fa-envelope" aria-hidden="true" />
 								</span>
 							</div>
 							<div
-								className="wrap-input100 validate-input m-b-16"
+								className="wrap-input100 validate-input"
 								data-validate="Password is required"
 							>
 								<input
@@ -32,41 +58,31 @@ export default function page() {
 									type="password"
 									name="pass"
 									placeholder="Password"
+									onChange={handleInputPassword}
 								/>
 								<span className="focus-input100" />
 								<span className="symbol-input100">
-									<span className="lnr lnr-lock" />
+									<i className="fa fa-lock" aria-hidden="true" />
 								</span>
 							</div>
-							<div className="contact100-form-checkbox m-l-4">
-								<input
-									className="input-checkbox100"
-									id="ckb1"
-									type="checkbox"
-									name="remember-me"
-								/>
-								<label className="label-checkbox100" htmlFor="ckb1">
-									Remember me
-								</label>
+							<div className="container-login100-form-btn">
+								<button type="submit" className="login100-form-btn">
+									Login
+								</button>
 							</div>
-							<div className="container-login100-form-btn p-t-25">
-								<button className="login100-form-btn">Login</button>
+							<div className="text-center p-t-12">
+								<span className="txt1">Forgot</span>
+								<a className="txt2" href="#">
+									Username / Password?
+								</a>
 							</div>
-							<div className="text-center w-full p-t-42 p-b-22">
-								<span className="txt1">Or login with</span>
-							</div>
-							<a href="#" className="btn-face m-b-10">
-								<i className="fa fa-facebook-official" />
-								Facebook
-							</a>
-							<a href="#" className="btn-google m-b-10">
-								<img src="images/icons/icon-google.png" alt="GOOGLE" />
-								Google
-							</a>
-							<div className="text-center w-full p-t-115">
-								<span className="txt1">Not a member?</span>
-								<a className="txt1 bo1 hov1" href="#">
-									Sign up now
+							<div className="text-center p-t-136">
+								<a className="txt2" href="#">
+									Create your Account
+									<i
+										className="fa fa-long-arrow-right m-l-5"
+										aria-hidden="true"
+									/>
 								</a>
 							</div>
 						</form>

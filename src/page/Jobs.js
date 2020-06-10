@@ -1,5 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Row, Col, Badge } from "react-bootstrap";
+
+import {
+	Row,
+	Col,
+	Badge,
+	Dropdown,
+	InputGroup,
+	FormControl,
+	Button,
+	Container,
+} from "react-bootstrap";
+
 import { useHistory } from "react-router-dom";
 
 // import Moment from "react-moment";
@@ -22,58 +33,70 @@ export default function Jobs() {
 	}
 	return (
 		<div>
-			{jobs !== null ? (
-				jobs.map((job) => {
-					return (
-						<div className="job-content" onClick={() => jobSelect(`${job.id}`)}>
-							<Row>
-								<Col>
-									<div className="jobcard-logo">
-										<img src={job.img} />
-									</div>
-								</Col>
-								<Col xs={8}>
-									<div className="jobcard-descriptions">
-										<h2 className="jobcard-title">{job.title}</h2>
-										<div>$ {job.salary}</div>
-										<div>
-											<ul className="benefit-list">
-												{job.benefits.map((benefit) => (
-													<li>{benefit}</li>
-												))}
-											</ul>
-										</div>
-										<div>
-											{job.tags.map((tag) => (
-												<Badge variant="secondary" className="badge-style">
-													{tag}
-												</Badge>
-											))}
-										</div>
-									</div>
-								</Col>
-								<Col>
-									<div className="date-location-box">
-										{job.isHotjob ? (
-											<div className="hotjob-label">Hot Job</div>
-										) : (
-											<div></div>
-										)}
+			<Container>
+				{jobs !== null ? (
+					jobs.map((job) => {
+						return (
+							<div>
+								<div
+									className="job-content"
+									onClick={() => jobSelect(`${job.id}`)}
+								>
+									<Row>
+										<Col>
+											<div className="jobcard-logo">
+												<img
+													style={{ width: "80px" }}
+													src={
+														"https://itviec.com/itviec-black-square-facebook.png"
+													}
+												/>
+											</div>
+										</Col>
+										<Col xs={8}>
+											<div className="jobcard-descriptions">
+												<h2 className="jobcard-title">{job.title}</h2>
+												<div>$ {job.salary}</div>
+												<div>
+													<ul className="benefit-list">
+														{job.benefits.map((benefit) => (
+															<li>{benefit}</li>
+														))}
+													</ul>
+												</div>
+												<div>
+													{job.tags.map((tag) => (
+														<Badge variant="secondary" className="badge-style">
+															{tag}
+														</Badge>
+													))}
+												</div>
+											</div>
+										</Col>
+										<Col>
+											<div className="date-location-box">
+												{job.isHotjob ? (
+													<div className="hotjob-label">Hot Job</div>
+												) : (
+													<div></div>
+												)}
 
-										<div className="jobcard-location">
-											<div>{job.city}</div>
-											<div>District {job.district}</div>
-										</div>
-										{/* <div className="job-time">{moment(job.time).fromNow()}</div> */}
-									</div>
-								</Col>
-							</Row>
-						</div>
-					);
-				})
-			) : (
-				<div>loading</div>
-			)}
+												<div className="jobcard-location">
+													<div>{job.city}</div>
+													<div>District {job.district}</div>
+												</div>
+												{/* <div className="job-time">{moment(job.time).fromNow()}</div> */}
+											</div>
+										</Col>
+									</Row>
+								</div>
+							</div>
+						);
+					})
+				) : (
+					<div>loading</div>
+				)}
+			</Container>
 			);
 		</div>
 	);

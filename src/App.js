@@ -5,7 +5,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Jobs from "./page/Jobs";
 import Login from "./page/login";
-import Detail from "./page/detail";
+import Detail from "./page/Detail";
+import Nav from "./page/Nav";
 
 function App() {
 	let [user, setUser] = useState({ isAuthenticated: true }); // if user is true then login, false, not login
@@ -19,6 +20,7 @@ function App() {
 	};
 	return (
 		<div>
+			<Nav></Nav>
 			<Switch>
 				<ProtectedRoute
 					path="/job/:id"
